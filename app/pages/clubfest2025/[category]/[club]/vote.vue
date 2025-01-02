@@ -7,15 +7,18 @@
 		</div>
 		<NuxtImg v-if="img" :src="img" class="bg-image" />
 		<h1 class="text-xl font-bold text-[var(--ui-primary)] leading-loose mb-2">Cast your votes for</h1>
-		<h2 class="text-3xl font-black">{{ name }}</h2>
-		<h3 class="text-xl opacity-50 mb-10">{{ category }}</h3>
+		<h2 class="text-4xl font-black">{{ name }}</h2>
+		<h3 class="text-lg opacity-50 mb-10">{{ category }}</h3>
 		<NuxtRating class="rating" :read-only="false" :rating-value="0" :rating-step="1" :rating-size="60"
 			@rating-selected="logRating" />
-		<UButton size="xl" :loading="isLoading" class="mt-5" @click="submitRating">Submit Vote</UButton>
+		<UButton v-if="rating > 0" size="xl" :loading="isLoading" class="mt-5" :disabled="isDisabled"
+			@click="submitRating">Submit Vote
+		</UButton>
 	</UContainer>
 </template>
 
 <script lang="ts" setup>
+import { v4 as uuidv4 } from 'uuid';
 const $route = useRoute();
 const name = ref($route.params.club as string);
 const category = ref($route.params.category as string);
@@ -24,10 +27,16 @@ const { data: img } = await useFetch<string>(`/api/v1/getImage/${encodeURICompon
 
 const rating = ref(0);
 const isLoading = ref(false);
+const isDisabled = ref(false);
 const voterId = useCookie('voterId', {
-	expires: new Date(Date.now() + 86400000)
+	expires: new Date(Date.now() + 86400000),
 });
-
+if (!voterId.value) navigateTo(`/login-student?from=${$route.fullPath}`);
+const isVoted = useCookie(`voted-${name.value.replace(' ', '')}`, {
+	expires: new Date(Date.now() + 86400000),
+	default: () => false,
+	watch: 'shallow'
+});
 
 const logRating = (event: number) => {
 	rating.value = event;
@@ -35,22 +44,16 @@ const logRating = (event: number) => {
 
 
 const submitRating = async () => {
-	useToast().add({
-		title: 'Submitting Vote',
-		description: `Submitting ${rating.value} stars for ${name.value}`,
-		color: 'info',
-	});
 	isLoading.value = true;
-	console.log("COOKIE: ", coookie.value);
-	if (coookie.value == 'voted') {
+	if (isVoted.value) {
+		isDisabled.value = true;
 		useToast().add({
 			title: 'Vote Already Submitted',
 			description: `You have already voted for ${name.value}`,
 			color: 'error',
 		});
-		return;
 	} else {
-		coookie.value = 'voted';
+		isVoted.value = true;
 		let res = await $fetch(`/api/v1/vote/${encodeURIComponent($route.params.name as string)}?stars=${rating.value}&id=${voterId.value}`, {
 			method: 'POST',
 			headers: {
@@ -61,15 +64,14 @@ const submitRating = async () => {
 				rating: rating.value
 			})
 		});
-		// set cookie to prevent multiple votes
-		console.log(res);
 		useToast().add({
 			title: 'Vote Submitted',
 			description: `You have voted ${rating.value} stars for ${name.value}`,
 			color: 'success',
 		});
-		isLoading.value = false;
+
 	}
+	isLoading.value = false;
 }
 </script>
 <style lang="css" scoped>

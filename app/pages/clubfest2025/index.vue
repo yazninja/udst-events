@@ -1,28 +1,115 @@
 <template>
 	<UContainer>
-		<div>Club Fest Page</div>
-		<template v-for="category in clubData" :key="category.name">
-			<h1>{{ category.name }}</h1>
-			<UCarousel v-slot="{ item }" class-names arrows :items="category.clubs" :ui="{
-				viewport: 'mt-15',
-				container: 'transition-[height]',
-				controls: 'absolute -top-8 inset-x-12',
-				dots: 'first:-top-7 -top-1',
-				dot: 'w-6 h-1',
-				item: 'basis-1/2 basis=1/4 mx-5'
-			}" :autoplay="{ delay: 2000 + (Math.random() * 500) }" dots loop>
-				<div class="flex flex-col items-center h-[234px] aspect-square rounded-lg">
-					<img :src="item.img" alt="club image" class=" object-cover h-40 rounded-lg">
-					<h2>{{ item.name }}</h2>
-					<NuxtLink :to="`/clubfest2025/${category.name}/${item.name}/vote`">Vote</NuxtLink>
-				</div>
-			</UCarousel>
-		</template>
+		<div
+			class="text-3xl sm:text-4xl mt-10 text-pretty font-black py-4 border-b border-[var(--ui-border-muted)] justify-between flex">
+			Clubfest 2025
+			<UChip color="success">
+				<UButton icon="i-lucide-user" size="xl" color="neutral" variant="solid" />
+			</UChip>
+		</div>
 
+		<div v-for="category in clubData" :key="category.name" class="my-10">
+			<h1 class="text-xl font-bold">{{ category.name }}</h1>
+			<Carousel v-bind="carouselConfig">
+				<Slide v-for="club in category.clubs" :key="club.name">
+					<NuxtLink :to="`/clubfest2025/${category.name}/${club.name}/vote`"
+						class="flex flex-col items-start">
+						<img :src="club.img" alt="club image" class=" object-cover h-40 rounded-lg">
+						<h2>{{ club.name }}</h2>
+					</NuxtLink>
+
+				</Slide>
+				<template #addons>
+					<Navigation />
+				</template>
+			</Carousel>
+		</div>
+		<FooterFC />
 	</UContainer>
 </template>
-
 <script setup lang="ts">
-
+import 'vue3-carousel/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 const { data: clubData } = await useFetch('/api/v1/getAllClubs');
+
+const carouselConfig = {
+
+	snapAlign: 'center',
+	breakpointMode: 'carousel',
+	breakpoints: {
+		// 300px and up
+		300: {
+			itemsToShow: 2,
+			snapAlign: 'center',
+			autoplay: 5000,
+		},
+		// 400px and up
+		400: {
+			itemsToShow: 3,
+			snapAlign: 'center',
+			autoplay: 3000,
+		},
+		// 500px and up
+		500: {
+			itemsToShow: 4.5,
+			snapAlign: 'center',
+			autoplay: 2000,
+
+		},
+	},
+	pauseAutoPlayOnHover: true,
+	wrapAround: true
+}
 </script>
+<style lang="scss">
+:root {
+	--carousel-transition: 300ms;
+	--carousel-opacity-inactive: 0.1;
+	--carousel-opacity-active: 1;
+	--carousel-opacity-near: 0.3;
+	--vc-nav-color: var(--ui-text-primary);
+}
+
+.carousel__viewport {
+	perspective: 2000px;
+}
+
+.carousel__track {
+	transform-style: preserve-3d;
+}
+
+.carousel__slide--sliding {
+	transition: opacity var(--carousel-transition),
+		transform var(--carousel-transition);
+}
+
+.carousel.is-dragging .carousel__slide {
+	transition: opacity var(--carousel-transition),
+		transform var(--carousel-transition);
+}
+
+.carousel__slide {
+	opacity: var(--carousel-opacity-inactive);
+	transform: translateX(10px) rotateY(-12deg) scale(0.7);
+}
+
+.carousel__slide--prev {
+	opacity: var(--carousel-opacity-near);
+	transform: rotateY(-10deg) scale(0.8);
+}
+
+.carousel__slide--active {
+	opacity: var(--carousel-opacity-active);
+	transform: rotateY(0) scale(1);
+}
+
+.carousel__slide--next {
+	opacity: var(--carousel-opacity-near);
+	transform: rotateY(10deg) scale(0.8);
+}
+
+.carousel__slide--next~.carousel__slide {
+	opacity: var(--carousel-opacity-inactive);
+	transform: translateX(-10px) rotateY(12deg) scale(0.7);
+}
+</style>

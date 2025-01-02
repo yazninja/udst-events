@@ -7,14 +7,14 @@ export default defineEventHandler(async (_event) => {
 				{ name: 'Wolves Engineer Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc04267.webp' },
 				{ name: 'Astronomy Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc04322.webp' },
 				{ name: 'Cybersecurity Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/cybsec.webp' },
-				{ name: 'MUN (Model United Nations)', img: '' }
+				{ name: 'MUN (Model United Nations)', img: 'https://www.ivint.org/wp-content/uploads/2018/12/28827357_1790129171032990_5187772539109178120_o.jpg' }
 			]
 		},
 		{
 			name: 'Community Engagement and Entertainment', clubs: [
 				{ name: 'Anime Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/anime.webp' },
 				{ name: 'Board Game Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc_1447.webp' },
-				{ name: 'Soul Waves Club', img: '' },
+				{ name: 'Seoul Waves Club', img: 'https://wallpapercave.com/wp/wp1915186.jpg' },
 				{ name: 'Volunteer Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/volunteeeer.webp' },
 				{ name: 'PAWS Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc_1193.webp' },
 				{ name: 'Deen Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc04412.webp' },

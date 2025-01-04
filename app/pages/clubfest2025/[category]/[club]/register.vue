@@ -1,5 +1,5 @@
 <template>
 	<UContainer>
-		<div>Club Fest Page</div>
+		<div>No Club Register Link Found</div>
 	</UContainer>
 </template>

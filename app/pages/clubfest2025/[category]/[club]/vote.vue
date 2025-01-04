@@ -1,18 +1,29 @@
 <!-- eslint-disable vue/first-attribute-linebreak -->
 <template>
-	<UContainer class="flex flex-col items-center justify-center text-center h-screen">
+	<UContainer class="flex flex-col items-center justify-center text-center h-screen gap-5">
 		<div class="actions">
 			<UButton to="/clubfest2025" icon="i-lucide-chevron-left" variant="link">Back (Club
 				Info)</Ubutton>
 		</div>
 		<NuxtImg v-if="img" :src="img" class="bg-image" />
-		<h1 class="text-xl font-bold text-[var(--ui-primary)] leading-loose mb-2">Cast your votes for</h1>
-		<h2 class="text-4xl font-black">{{ name }}</h2>
-		<h3 class="text-lg opacity-50 mb-10">{{ category }}</h3>
-		<NuxtRating class="rating" :read-only="false" :rating-value="0" :rating-step="1" :rating-size="60"
-			@rating-selected="logRating" />
-		<UButton v-if="rating > 0" size="xl" :loading="isLoading" class="mt-5" :disabled="isDisabled"
-			@click="submitRating">Submit Vote
+		<div>
+			<h1 class="text-xl font-bold text-[var(--ui-primary)] leading-loose mb-2">Cast your votes for</h1>
+			<h2 class="text-4xl font-black">{{ name }}</h2>
+			<h3 class="text-lg opacity-50 mb-10">{{ category }}</h3>
+		</div>
+		<div>
+			<p class="text-lg">Booth Design</p>
+			<NuxtRating class="rating" :read-only="false" :rating-value="0" :rating-step="0.5" :rating-size="60"
+				@rating-selected="logRatingDesign" />
+		</div>
+		<div>
+			<p class="text-lg">Engagement</p>
+			<NuxtRating class="rating" :read-only="false" :rating-value="0" :rating-step="0.5" :rating-size="60"
+				@rating-selected="logRatingEngage" />
+		</div>
+
+		<UButton v-if="ratingDesign > 0 && ratingEngage > 0" size="xl" :loading="isLoading" class="mt-5"
+			:disabled="isDisabled" @click="submitRating">Submit Vote
 		</UButton>
 	</UContainer>
 </template>
@@ -25,7 +36,8 @@ const category = ref($route.params.category as string);
 
 const { data: img } = await useFetch<string>(`/api/v1/getImage/${encodeURIComponent(name.value)}`);
 
-const rating = ref(0);
+const ratingDesign = ref(0);
+const ratingEngage = ref(0);
 const isLoading = ref(false);
 const isDisabled = ref(false);
 const voterId = useCookie('voterId', {
@@ -38,8 +50,11 @@ const isVoted = useCookie(`voted-${name.value.replace(' ', '')}`, {
 	watch: 'shallow'
 });
 
-const logRating = (event: number) => {
-	rating.value = event;
+const logRatingDesign = (event: number) => {
+	ratingDesign.value = event;
+}
+const logRatingEngage = (event: number) => {
+	ratingEngage.value = event;
 }
 
 
@@ -54,19 +69,20 @@ const submitRating = async () => {
 		});
 	} else {
 		isVoted.value = true;
-		let res = await $fetch(`/api/v1/vote/${encodeURIComponent($route.params.name as string)}?stars=${rating.value}&id=${voterId.value}`, {
+		let res = await $fetch(`/api/v1/vote/${encodeURIComponent($route.params.club as string)}?id=${voterId.value}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
 			body: JSON.stringify({
 				name: name.value,
-				rating: rating.value
+				ratingDesign: ratingDesign.value,
+				ratingEngage: ratingEngage.value,
 			})
 		});
 		useToast().add({
 			title: 'Vote Submitted',
-			description: `You have voted ${rating.value} stars for ${name.value}`,
+			description: `Thanks for voting for ${name.value}`,
 			color: 'success',
 		});
 

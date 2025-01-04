@@ -24,9 +24,9 @@ export default defineNuxtConfig({
 
   compatibilityDate: "2024-11-27",
   routeRules: {
-    '/': { redirect: '/clubfest2025', prerender: true },
+    // '/': { redirect: '/clubfest2025', prerender: true },
     // '/clubfest2025': { prerender: true },
-    // '/clubfest2025/**/**/vote': { swr: true },
-    // '/clubfest2025/**/**/qrcode': { swr: true },
+    '/clubfest2025/**/**/vote': { isr: true },
+    '/clubfest2025/**/**/qrcode': { isr: true },
   }
 })

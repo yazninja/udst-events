@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/': { redirect: '/clubfest2025', prerender: true },
     // '/clubfest2025': { prerender: true },
-    '/clubfest2025/**/**/vote': { swr: true },
-    '/clubfest2025/**/**/qrcode': { swr: true },
+    // '/clubfest2025/**/**/vote': { swr: true },
+    // '/clubfest2025/**/**/qrcode': { swr: true },
   }
 })

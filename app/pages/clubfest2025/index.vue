@@ -32,7 +32,7 @@
 </template>
 <script setup lang="ts">
 import 'vue3-carousel/carousel.css';
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+import { Carousel, Slide, Navigation } from 'vue3-carousel';
 const { data: clubData } = await useFetch('/api/v1/getAllClubs');
 
 const carouselConfig = {
@@ -72,7 +72,7 @@ const makeContextMenuItems = (category: string, club: string) => {
 		{
 			label: 'Vote',
 			icon: 'i-lucide-star',
-			onSelect: (e: Event) => {
+			onSelect: () => {
 				navigateTo(`/clubfest2025/${category}/${club}/vote`);
 			}
 
@@ -92,55 +92,3 @@ const makeContextMenuItems = (category: string, club: string) => {
 	]
 }
 </script>
-<style lang="scss">
-:root {
-	--carousel-transition: 300ms;
-	--carousel-opacity-inactive: 0.1;
-	--carousel-opacity-active: 1;
-	--carousel-opacity-near: 0.3;
-	--vc-nav-color: var(--ui-text-primary);
-}
-
-.carousel__viewport {
-	perspective: 2000px;
-}
-
-.carousel__track {
-	transform-style: preserve-3d;
-}
-
-.carousel__slide--sliding {
-	transition: opacity var(--carousel-transition),
-		transform var(--carousel-transition);
-}
-
-.carousel.is-dragging .carousel__slide {
-	transition: opacity var(--carousel-transition),
-		transform var(--carousel-transition);
-}
-
-.carousel__slide {
-	opacity: var(--carousel-opacity-inactive);
-	transform: translateX(10px) rotateY(-12deg) scale(0.7);
-}
-
-.carousel__slide--prev {
-	opacity: var(--carousel-opacity-near);
-	transform: rotateY(-10deg) scale(0.8);
-}
-
-.carousel__slide--active {
-	opacity: var(--carousel-opacity-active);
-	transform: rotateY(0) scale(1);
-}
-
-.carousel__slide--next {
-	opacity: var(--carousel-opacity-near);
-	transform: rotateY(10deg) scale(0.8);
-}
-
-.carousel__slide--next~.carousel__slide {
-	opacity: var(--carousel-opacity-inactive);
-	transform: translateX(-10px) rotateY(12deg) scale(0.7);
-}
-</style>

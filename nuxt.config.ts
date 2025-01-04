@@ -9,6 +9,9 @@ export default defineNuxtConfig({
     "@nuxt/image"
   ],
   css: ['~/assets/css/main.css'],
+  experimental: {
+    payloadExtraction: false
+  },
   ui: {
     theme: {
       colors: ['primary', 'secondary', 'tertiary', 'info', 'success', 'warning', 'error']

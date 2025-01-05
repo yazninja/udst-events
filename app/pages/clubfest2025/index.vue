@@ -4,7 +4,7 @@
 			class="text-3xl sm:text-4xl mt-10 text-pretty font-black py-4 border-b border-[var(--ui-border-muted)] justify-between flex">
 			Clubs Festival
 			<UChip :color="voterID ? 'success' : 'error'">
-				<UButton icon="i-lucide-user" size="xl" color="primary" variant="solid" to="/login-student" />
+				<UButton icon="i-lucide-user" size="xl" color="neutral" variant="solid" to="/login-student" />
 			</UChip>
 		</div>
 

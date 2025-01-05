@@ -2,7 +2,7 @@
 	<UContainer>
 		<div
 			class="text-3xl sm:text-4xl mt-10 text-pretty font-black py-4 border-b border-[var(--ui-border-muted)] justify-between flex">
-			Clubfest 2025
+			Club Festival
 			<UChip color="success">
 				<UButton icon="i-lucide-user" size="xl" color="primary" variant="solid" />
 			</UChip>

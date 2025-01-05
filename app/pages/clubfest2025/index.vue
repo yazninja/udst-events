@@ -16,7 +16,7 @@
 						class="flex flex-col items-center">
 						<NuxtLink :to="`/clubfest2025/${category.name}/${club.name}/vote`"
 							class="flex flex-col items-start">
-							<img :src="club.img" alt="club image" class=" object-cover h-[80%] rounded-lg">
+							<img :src="club.img" alt="club image" class=" object-cover h-[80%] max-h-50 rounded-lg">
 							<h2>{{ club.name }}</h2>
 						</NuxtLink>
 					</UContextMenu>
@@ -102,7 +102,7 @@ const makeContextMenuItems = (category: string, club: string) => {
 }
 
 .carousel__viewport {
-	perspective: 2000px;
+	perspective: 500px;
 }
 
 .carousel__track {

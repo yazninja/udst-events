@@ -2,9 +2,9 @@
 	<UContainer>
 		<div
 			class="text-3xl sm:text-4xl mt-10 text-pretty font-black py-4 border-b border-[var(--ui-border-muted)] justify-between flex">
-			Club Festival
-			<UChip color="success">
-				<UButton icon="i-lucide-user" size="xl" color="primary" variant="solid" />
+			Clubs Festival
+			<UChip :color="voterID ? 'success' : 'error'">
+				<UButton icon="i-lucide-user" size="xl" color="primary" variant="solid" to="/login-student" />
 			</UChip>
 		</div>
 
@@ -34,7 +34,9 @@
 import 'vue3-carousel/carousel.css';
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 const { data: clubData } = await useFetch('/api/v1/getAllClubs');
-
+const voterID = useCookie('voterId', {
+	expires: new Date(Date.now() + 86400000),
+});
 const carouselConfig = {
 
 	snapAlign: 'center',

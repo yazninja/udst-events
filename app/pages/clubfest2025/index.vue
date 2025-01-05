@@ -7,26 +7,24 @@
 				<UButton icon="i-lucide-user" size="xl" color="neutral" variant="solid" to="/login-student" />
 			</UChip>
 		</div>
-
-		<div v-for="category in clubData" :key="category.name" class="my-10">
-			<h1 class="text-xl font-bold">{{ category.name }}</h1>
-			<Carousel v-bind="carouselConfig">
-				<Slide v-for="club in category.clubs" :key="club.name">
-					<UContextMenu :items="makeContextMenuItems(category.name, club.name)"
-						class="flex flex-col items-center">
-						<NuxtLink :to="`/clubfest2025/${category.name}/${club.name}/vote`"
-							class="flex flex-col items-start">
-							<img :src="club.img" alt="club image" class=" object-cover h-[80%] max-h-50 rounded-lg">
-							<h2>{{ club.name }}</h2>
+		<UInput v-model="search" placeholder="Search..." class="mt-5 w-full" icon="i-lucide-search" highlight
+			variant="soft" @update:model-value="searchFunc()" />
+		<UAccordion v-model="accordionShii" type="multiple" :items="clubData" class="mt-10">
+			<template #body="{ item }">
+				<div class="flex flex-col items-center justify-center gap-5">
+					<template v-for="club in item.clubs" :key="club.name">
+						<NuxtLink
+							:to="`/clubfest2025/${encodeURIComponent(item.name)}/${encodeURIComponent(club.name)}/vote`"
+							class="relative h-16 max-w-screen-sm w-full flex flex-col items-center justify-center">
+							<img :src="club.img" alt="club image"
+								class="object-cover h-16 max-w-screen-sm w-full rounded-lg brightness-30">
+							<h2 class="absolute text-xl font-bold text-white">{{ club.name }}</h2>
 						</NuxtLink>
-					</UContextMenu>
 
-				</Slide>
-				<template #addons>
-					<Navigation />
-				</template>
-			</Carousel>
-		</div>
+					</template>
+				</div>
+			</template>
+		</UAccordion>
 		<FooterFC />
 	</UContainer>
 </template>
@@ -34,6 +32,34 @@
 import 'vue3-carousel/carousel.css';
 import { Carousel, Slide, Navigation } from 'vue3-carousel';
 const { data: clubData } = await useFetch('/api/v1/getAllClubs');
+clubData.value = clubData.value?.map((category: any) => {
+	category.label = category.name;
+	category.clubs = category.clubs.map((club: any) => {
+		club.label = club.name;
+		return club;
+	});
+	return category;
+});
+const clubDataBackup = JSON.parse(JSON.stringify(clubData.value));
+const accordionShii = ref([]);
+const search = ref('');
+
+function searchFunc() {
+	const searchValue = search.value.toLowerCase();
+	clubData.value = clubData.value?.map((category: any) => {
+		category.clubs = category.clubs.filter((club: any) => {
+			return club.name.toLowerCase().includes(searchValue);
+		});
+		return category;
+	});
+
+	accordionShii.value = ['0', '1', '2'];
+	if (searchValue === '') {
+		clubData.value = JSON.parse(JSON.stringify(clubDataBackup));
+		accordionShii.value = [];
+	}
+}
+
 const voterID = useCookie('voterId', {
 	expires: new Date(Date.now() + 86400000),
 });

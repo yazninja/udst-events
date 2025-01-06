@@ -2,8 +2,7 @@
 <template>
 	<UContainer class="flex flex-col items-center justify-center text-center h-screen gap-5">
 		<div class="actions">
-			<UButton to="/clubfest2025" icon="i-lucide-chevron-left" variant="link">Back (Club
-				Info)</Ubutton>
+			<UButton to="/clubfest2025" icon="i-lucide-chevron-left" variant="link">Back</Ubutton>
 		</div>
 		<NuxtImg v-if="img" :src="img" class="bg-image" />
 		<div>

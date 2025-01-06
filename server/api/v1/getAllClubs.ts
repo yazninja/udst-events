@@ -15,7 +15,6 @@ export default defineEventHandler(async (_event) => {
 			name: 'Community Engagement and Entertainment', clubs: [
 				{ name: 'Al-Quds Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc04709.webp' },
 				{ name: 'Anime Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/anime.webp' },
-				{ name: 'Board Game Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc_1447.webp' },
 				{ name: 'Deen Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc04412.webp' },
 				{ name: 'Environment Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2023-09/img_3929.webp' },
 				{ name: 'Forever Friends Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc04286.webp' },
@@ -32,7 +31,7 @@ export default defineEventHandler(async (_event) => {
 				{ name: 'Boardgames Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc_1447.webp' },
 				{ name: 'Cooking Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc_1405.webp' },
 				{ name: 'Fashion Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc04866_0.webp' },
-				{ name: 'Filmmaker Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc04828.webp' },
+				{ name: 'Filmmakers Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc04828.webp' },
 				{ name: 'F1 Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc_1318.webp' },
 				{ name: 'Music Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc_1024.webp' },
 				{ name: 'Photography Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc04316_0.webp' },

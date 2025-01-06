@@ -65,8 +65,8 @@ export default defineEventHandler(async event => {
 		}
 	}
 	console.log('KEYSSS::',);
-
-
+	const votes = workbook.addWorksheet('Votes');
+	votes.addRows(allVotes);
 
 
 	// const res = await $fetch<any>('https://counter.ciderapp.workers.dev/allClubs?name=*');

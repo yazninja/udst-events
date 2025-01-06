@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { UContainer } from '#build/components';
-
 const userAgent = navigator.userAgent;
 const pixelRatio = window.devicePixelRatio;
 const innerWidth = window.innerWidth;

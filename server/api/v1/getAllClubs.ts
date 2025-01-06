@@ -7,6 +7,7 @@ export default defineEventHandler(async (_event) => {
 				{ name: 'English Debate Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc09465.webp' },
 				{ name: 'Healing Hands', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/healinghands.webp' },
 				{ name: 'MUN (Model United Nations)', img: 'https://www.ivint.org/wp-content/uploads/2018/12/28827357_1790129171032990_5187772539109178120_o.jpg' },
+				{ name: 'Paramedicine Society', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/paramedicine_ah_9726_www.ahco_.productions.webp' },
 				{ name: 'Toastmasters Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/toast.webp' },
 				{ name: 'Wolves Engineer Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc04267.webp' },
 			]

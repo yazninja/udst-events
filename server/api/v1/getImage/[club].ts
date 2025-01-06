@@ -3,6 +3,7 @@ export default defineEventHandler(async (event) => {
 	console.log('Looking for club:', club)
 	return [
 		{ name: 'Astronomy Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc04322.webp' },
+		{ name: 'Book Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/book_club.webp' },
 		{ name: 'Cybersecurity Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/cybsec.webp' },
 		{ name: 'English Debate Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc09465.webp' },
 		{ name: 'Healing Hands', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/healinghands.webp' },

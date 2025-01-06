@@ -3,6 +3,7 @@ export default defineEventHandler(async (_event) => {
 		{
 			name: 'Academic and Professional Development', clubs: [
 				{ name: 'Astronomy Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc04322.webp' },
+				{ name: 'Book Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/book_club.webp' },
 				{ name: 'Cybersecurity Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/cybsec.webp' },
 				{ name: 'English Debate Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc09465.webp' },
 				{ name: 'Healing Hands', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/healinghands.webp' },
@@ -19,7 +20,6 @@ export default defineEventHandler(async (_event) => {
 				{ name: 'Deen Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc04412.webp' },
 				{ name: 'Environment Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2023-09/img_3929.webp' },
 				{ name: 'Forever Friends Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc04286.webp' },
-				{ name: 'PAWS Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc_1193.webp' },
 				{ name: 'Qatar Student Association Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc_0718.webp' },
 				{ name: 'Seoul Waves Club', img: 'https://wallpapercave.com/wp/wp1915186.jpg' },
 				{ name: 'Volunteer Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/volunteeeer.webp' },
@@ -28,7 +28,6 @@ export default defineEventHandler(async (_event) => {
 		{
 			name: 'Arts and Hobbies', clubs: [
 				{ name: 'Art Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc_0496.webp' },
-				{ name: 'Automotive Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc_0920.webp' },
 				{ name: 'Boardgames Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc_1447.webp' },
 				{ name: 'Cooking Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-09/dsc_1405.webp' },
 				{ name: 'Fashion Club', img: 'https://www.udst.edu.qa/sites/default/files/styles/d05_traditional/public/2024-10/dsc04866_0.webp' },

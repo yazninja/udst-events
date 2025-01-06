@@ -5,13 +5,13 @@ export default defineEventHandler(async event => {
 	const data = new Map<string, { points: number, voters: number }>(Object.entries(res));
 	const categories = await $fetch<any>('/api/v1/getAllClubs');
 
-
 	const workbook = new ExcelJS.Workbook();
 	workbook.creator = 'Yazninja (thru Program)'
 	workbook.created = new Date();
 
+
 	for (const category of categories) {
-		const sheet = workbook.addWorksheet('Winners - ' + category.name.replace('and', '&').split(' ').map((word: string) => word.charAt(0)).join(''));
+		const sheet = workbook.addWorksheet(`Winners - ` + category.name.replace('and', '&').split(' ').map((word: string) => word.charAt(0)).join(''));
 		sheet.columns = [
 			{ header: 'Club Name', key: 'name', width: 32 },
 			{ header: 'Votes', key: 'votes', width: 32 },
@@ -34,7 +34,8 @@ export default defineEventHandler(async event => {
 		{ header: 'Date', key: 'date', width: 64 },
 		{ header: 'ID', key: 'id', width: 28 },
 		{ header: 'Club Name', key: 'contestant', width: 32 },
-		{ header: 'Stars', key: 'stars', width: 12 }
+		{ header: 'Rating Design', key: 'ratingDesign', width: 12 },
+		{ header: 'Rating Engage', key: 'ratingEngage', width: 12 }
 	];
 	let votesData: { id: string, contestant: string, stars: number }[] = await kv.smembers('cf25w-votes');
 	votesData = votesData.sort((a, b) => {

@@ -11,6 +11,10 @@ export default defineEventHandler(async (event) => {
 	} else if (!body.ratingDesign || !body.ratingEngage) {
 		return { status: 400, body: 'Cannot Vote: Missing ratingDesign or ratingEngage' }
 	}
+	// invalid if date is more than 1 PM January 6 2025 GMT+3
+	else if (Date.now() > new Date('2025-01-06T13:00:00.000+03:00').getTime()) {
+		return { status: 400, body: 'Cannot Vote: Voting has ended' }
+	}
 
 
 	await $fetch<number>(`https://counter.ciderapp.workers.dev/increment?name=cf25w-${club}-design&stars=${body.ratingDesign}`);

@@ -68,7 +68,7 @@ const submitRating = async () => {
 		});
 	} else {
 		isVoted.value = true;
-		let res = await $fetch(`/api/v1/vote/${encodeURIComponent($route.params.club as string)}?id=${voterId.value}`, {
+		const res = await $fetch(`/api/v1/vote/${encodeURIComponent($route.params.club as string)}?id=${voterId.value}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -79,12 +79,19 @@ const submitRating = async () => {
 				ratingEngage: ratingEngage.value,
 			})
 		});
-		useToast().add({
-			title: 'Vote Submitted',
-			description: `Thanks for voting for ${name.value}`,
-			color: 'success',
-		});
-
+		if (res == true) {
+			useToast().add({
+				title: 'Vote Submitted',
+				description: `Thanks for voting for ${name.value}`,
+				color: 'success',
+			});
+		} else {
+			useToast().add({
+				title: 'Error',
+				description: res.body,
+				color: 'error',
+			});
+		}
 	}
 	isLoading.value = false;
 }
